@@ -3,6 +3,17 @@
 
 	 	var $email = '';
 	
+	 	/**
+	 	 * This function validates using PHP's filter_var function
+	 	 * PHP >= 5.2.0
+	 	 * @param  string $email This is the email address you are verifying		
+	 	 * @return [type]        [description]
+	 	 */
+	 	function validate($email) {
+	 		if(filter_var($email, FILTER_VALIDATE_EMAIL)) {
+	 			return TRUE;
+	 		}
+	 	}
 
 	 	/**
 	 	 * This function validates whether or not a given email address is in good format via regular expression.
