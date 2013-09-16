@@ -2,7 +2,7 @@
 	 class email {
 
 	 	var $email = '';
-	 	var $error = '';
+	
 
 	 	/**
 	 	 * This function validates whether or not a given email address is in good format via regular expression.
@@ -10,15 +10,27 @@
 	 	 * @return bool 		 
 	 	 */
 	 	function validate_reg($email) {
-	 		$valid = true;
-	        if (!eregi("^[_a-z0-9-]+(\.[_a-z0-9-]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,8})$", $this->email))
+	 		
+	        if (eregi("^[_a-z0-9-]+(\.[_a-z0-9-]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,8})$", $email))
 	        {
-	            $valid = false;
-	            $this->error = "$this->email is not properly formatted";
+	            $valid = TRUE;
+	        } else {
+	        	$valid = FALSE;
 	        }
 	        return $valid;
 	 	}
 	 	
+	 	/**
+	 	 * This function returns The domain of a given email
+	 	 * @param  string $email The email address you want to check
+	 	 * @return string        The domain you are looking for
+	 	 */
+	 	function domain($email) {
+	 		if(strpos($email, "@")) {
+	 			$dat = explode("@", $email);
+	 			return $dat[1];
+	 		} 
+	 	}
 
 
 	}
