@@ -13,11 +13,8 @@
 	 		
 	        if (eregi("^[_a-z0-9-]+(\.[_a-z0-9-]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,8})$", $email))
 	        {
-	            $valid = TRUE;
-	        } else {
-	        	$valid = FALSE;
-	        }
-	        return $valid;
+	            return TRUE;
+	        } 
 	 	}
 	 	
 	 	/**
@@ -30,6 +27,13 @@
 	 			$dat = explode("@", $email);
 	 			return $dat[1];
 	 		} 
+	 	}
+
+
+	 	function if_edu($email) {
+	 		if (preg_match('/^[a-z0-9_\-]+(\.[_a-z0-9\-]+)*@([_a-z0-9\-]+\.)+edu$/i', $email)) {
+	 			return TRUE;
+	 		}
 	 	}
 
 
