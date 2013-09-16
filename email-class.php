@@ -5,7 +5,7 @@
 	 	var $error = '';
 
 	 	/**
-	 	 * [validate_reg description]
+	 	 * This function validates whether or not a given email address is in good format via regular expression.
 	 	 * @param  string $email The email addres you want to validate
 	 	 * @return bool 		 
 	 	 */
