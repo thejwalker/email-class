@@ -15,13 +15,23 @@
 	 		}
 	 	}
 
+
+	 	function validateDNS($email) {
+	 		if(filter_var($email, FILTER_VALIDATE_EMAIL)) {
+	 			$domain = substr(strchr($email, '@'), 1);
+	 			if(checkdnsrr($domain, 'MX')) {
+	 				return true;
+	 			}
+	 		}
+	 	}
+
+
 	 	/**
 	 	 * This function validates whether or not a given email address is in good format via regular expression.
 	 	 * @param  string $email The email addres you want to validate
 	 	 * @return bool 		 
 	 	 */
-	 	function validate_reg($email) {
-	 		
+	 	function validateRegEx($email) {
 	        if (eregi("^[_a-z0-9-]+(\.[_a-z0-9-]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,8})$", $email))
 	        {
 	            return TRUE;
@@ -45,7 +55,7 @@
 	 	 * @param  string $email The Email Address
 	 	 * @return bool        IS EDU / IS NOT EDU
 	 	 */
-	 	function if_edu($email) {
+	 	function ifEdu($email) {
 	 		if (preg_match('/^[a-z0-9_\-]+(\.[_a-z0-9\-]+)*@([_a-z0-9\-]+\.)+edu$/i', $email)) {
 	 			return TRUE;
 	 		}
@@ -56,7 +66,7 @@
 	 	 * @param  string $email The Email Address
 	 	 * @return bool        IS GOV / IS NOT GOV
 	 	 */
-	 	function if_gov($email) {
+	 	function ifGov($email) {
 	 		if (preg_match('/^[a-z0-9_\-]+(\.[_a-z0-9\-]+)*@([_a-z0-9\-]+\.)+gov$/i', $email)) {
 	 			return TRUE;
 	 		}
@@ -67,11 +77,12 @@
 	 	 * @param  string $mail The Email Address
 	 	 * @return bool       IS MIL / IS NOT MIL
 	 	 */
-	 	function if_mil($mail) {
+	 	function ifMil($mail) {
 	 		if (preg_match('/^[a-z0-9_\-]+(\.[_a-z0-9\-]+)*@([_a-z0-9\-]+\.)+mil$/i', $email)) {
 	 			return TRUE;
 	 		}
 	 	}
+
 
 
 	}
